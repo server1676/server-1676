@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+:root {
+  /* CryoCore Neon Theme Colors - Cyberpunk + Ice Age */
+  --background: #050d1c;
+  --background-secondary: #0f172a;
+  --background-panel: rgba(255, 255, 255, 0.03);
+  --foreground: #e5f1ff;
+  --neon-cyan: #00f0ff;
+  --neon-cyan-bright: #00ffff;
+  --neon-cyan-dark: #0099cc;
+  --neon-blue: #8efff9;
+  --neon-pink: #ff004f;
+  --neon-purple: #bf00ff;
+  --dark-navy: #050d1c;
+  --dark-gray: #1a1a2e;
+  --silver-gray: #9ca3af;
+  --silver-gray-light: #374151;
+  
+  /* Neon Gradients */
+  --gradient-neon-primary: linear-gradient(135deg, #00f0ff 0%, #8efff9 100%);
+  --gradient-neon-secondary: linear-gradient(135deg, #bf00ff 0%, #ff004f 100%);
+  --gradient-background: linear-gradient(135deg, #050d1c 0%, #0f172a 100%);
+  --gradient-panel: linear-gradient(135deg, rgba(0, 240, 255, 0.1) 0%, rgba(142, 255, 249, 0.05) 100%);
+  
+  /* Glow Effects */
+  --glow-cyan: 0 0 10px #00f0ff, 0 0 20px #00f0ff, 0 0 30px #00f0ff;
+  --glow-cyan-soft: 0 0 5px #00f0ff, 0 0 10px #00f0ff;
+  --glow-pink: 0 0 10px #ff004f, 0 0 20px #ff004f;
+  --glow-purple: 0 0 10px #bf00ff, 0 0 20px #bf00ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--neon-cyan);
+  --color-secondary: var(--neon-blue);
+  --color-accent: var(--neon-pink);
+  --color-muted: var(--silver-gray);
+  --font-sans: var(--font-inter), var(--font-geist-sans);
+  --font-heading: var(--font-orbitron), var(--font-geist-mono);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem; /* Account for fixed navigation */
+}
+
+body {
+  background: var(--gradient-background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 4px;
+  box-shadow: var(--glow-cyan-soft);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan-bright);
+  box-shadow: var(--glow-cyan);
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Typography utilities */
+.font-heading {
+  font-family: var(--font-orbitron), monospace;
+}
+
+.text-gradient {
+  background: var(--gradient-neon-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: var(--gradient-neon-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Neon Glow Effects */
+.glow-cyan {
+  box-shadow: var(--glow-cyan);
+}
+
+.glow-cyan-soft {
+  box-shadow: var(--glow-cyan-soft);
+}
+
+.glow-pink {
+  box-shadow: var(--glow-pink);
+}
+
+.glow-purple {
+  box-shadow: var(--glow-purple);
+}
+
+.text-glow-cyan {
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-cyan-soft);
+}
+
+.text-glow-pink {
+  color: var(--neon-pink);
+  text-shadow: var(--glow-pink);
+}
+
+/* Panel Effects */
+.panel-neon {
+  background: var(--background-panel);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 8px;
+}
+
+.panel-neon:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: var(--glow-cyan-soft);
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: var(--glow-cyan-soft);
+  }
+  50% {
+    box-shadow: var(--glow-cyan);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-cursor {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--neon-cyan);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  border-right: 2px solid var(--neon-cyan);
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end), blink-cursor 0.75s step-end infinite;
+}
+
+.animate-glitch:hover {
+  animation: glitch 0.3s;
+}
