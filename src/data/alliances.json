@@ -1,0 +1,92 @@
+[
+  {
+    "id": "th3",
+    "name": "TH3",
+    "fullName": "The Third Empire",
+    "rank": 1,
+    "members": 100,
+    "svsScore": "Alliance Power #1",
+    "description": "Born from the fusion of AOT and 3NG, TH3 represents elite strategic excellence and coordinated warfare.",
+    "achievements": [
+      "#1 Alliance Power Ranking",
+      "Top-ranked in Crazy Joe",
+      "SVS Champions"
+    ],
+    "leader": "Elite Command",
+    "color": "#00f0ff",
+    "bgGradient": "from-[#00f0ff]/20 to-[#8efff9]/20",
+    "tagline": "Fusion. Power. Strategy."
+  },
+  {
+    "id": "gow",
+    "name": "GOW",
+    "fullName": "Guardians of Winter",
+    "rank": 2,
+    "members": 95,
+    "svsScore": "NAP5 Core",
+    "description": "Defensive specialists and strategic coordinators maintaining server stability and tactical excellence.",
+    "achievements": [
+      "NAP5 Founder",
+      "Strategic Defense",
+      "Unity Champions"
+    ],
+    "leader": "Winter Command",
+    "color": "#8efff9",
+    "bgGradient": "from-[#8efff9]/20 to-[#00f0ff]/20",
+    "tagline": "Defense. Unity. Honor."
+  },
+  {
+    "id": "ris",
+    "name": "RIS",
+    "fullName": "Rising Storm",
+    "rank": 3,
+    "members": 88,
+    "svsScore": "NAP5 Elite",
+    "description": "Tactical innovators specializing in coordinated strikes and strategic positioning within NAP5.",
+    "achievements": [
+      "NAP5 Core Member",
+      "Tactical Excellence",
+      "Event Coordination"
+    ],
+    "leader": "Storm Leader",
+    "color": "#bf00ff",
+    "bgGradient": "from-[#bf00ff]/20 to-[#ff004f]/20",
+    "tagline": "Innovation. Precision. Storm."
+  },
+  {
+    "id": "3ng",
+    "name": "3NG",
+    "fullName": "Third Generation",
+    "rank": 4,
+    "members": 85,
+    "svsScore": "NAP5 Veteran",
+    "description": "Originally from server 1654, 3NG brings veteran experience and strategic depth to NAP5.",
+    "achievements": [
+      "Cross-Server Veterans",
+      "Strategic Experience",
+      "NAP5 Founders"
+    ],
+    "leader": "Veteran Command",
+    "color": "#ff004f",
+    "bgGradient": "from-[#ff004f]/20 to-[#bf00ff]/20",
+    "tagline": "Experience. Loyalty. Excellence."
+  },
+  {
+    "id": "phw",
+    "name": "PHW",
+    "fullName": "Phoenix Wings",
+    "rank": 5,
+    "members": 82,
+    "svsScore": "NAP5 Rising",
+    "description": "Rising alliance within NAP5 system, known for adaptability and coordinated event participation.",
+    "achievements": [
+      "NAP5 Integration",
+      "Event Specialists",
+      "Rising Power"
+    ],
+    "leader": "Phoenix Commander",
+    "color": "#fbbf24",
+    "bgGradient": "from-[#fbbf24]/20 to-[#f59e0b]/20",
+    "tagline": "Rebirth. Ascension. Victory."
+  }
+]

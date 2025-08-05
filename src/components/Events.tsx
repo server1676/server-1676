@@ -2,61 +2,11 @@
 
 import { motion } from 'framer-motion';
 import EventTimeline from './EventTimeline';
+import { getAllEvents, serverConfig } from '@/data';
 
 const Events = () => {
-  // Alliance-specific event timings with emojis
-  const allianceEventData = [
-    {
-      name: 'TH3',
-      color: '#00f0ff',
-      events: [
-        { name: 'Bear', emoji: '🧸', times: ['13:00 UTC', '19:00 UTC'], color: '#00f0ff' },
-        { name: 'Foundry', emoji: '🔥', times: ['14:00 UTC', '21:00 UTC'], color: '#8efff9' },
-        { name: 'Canyon', emoji: '🏔️', times: ['14:00 UTC', '21:00 UTC'], color: '#bf00ff' },
-        { name: 'CJ', emoji: '🗳️', times: ['Vote Based'], color: '#a855f7', isVoteDependent: true }
-      ]
-    },
-    {
-      name: 'GOW',
-      color: '#8efff9',
-      events: [
-        { name: 'Bear', emoji: '🧸', times: ['13:00 UTC', '19:00 UTC'], color: '#00f0ff' },
-        { name: 'Foundry', emoji: '🔥', times: ['14:00 UTC', '21:00 UTC'], color: '#8efff9' },
-        { name: 'Canyon', emoji: '🏔️', times: ['14:00 UTC', '21:00 UTC'], color: '#bf00ff' },
-        { name: 'CJ', emoji: '🗳️', times: ['Vote Based'], color: '#a855f7', isVoteDependent: true }
-      ]
-    },
-    {
-      name: 'RIS',
-      color: '#bf00ff',
-      events: [
-        { name: 'Bear', emoji: '🧸', times: ['13:00 UTC', '19:00 UTC'], color: '#00f0ff' },
-        { name: 'Foundry', emoji: '🔥', times: ['14:00 UTC', '21:00 UTC'], color: '#8efff9' },
-        { name: 'Canyon', emoji: '🏔️', times: ['14:00 UTC', '21:00 UTC'], color: '#bf00ff' },
-        { name: 'CJ', emoji: '🗳️', times: ['Vote Based'], color: '#a855f7', isVoteDependent: true }
-      ]
-    },
-    {
-      name: '3NG',
-      color: '#ff004f',
-      events: [
-        { name: 'Bear', emoji: '🧸', times: ['13:00 UTC', '19:00 UTC'], color: '#00f0ff' },
-        { name: 'Foundry', emoji: '🔥', times: ['14:00 UTC', '21:00 UTC'], color: '#8efff9' },
-        { name: 'Canyon', emoji: '🏔️', times: ['14:00 UTC', '21:00 UTC'], color: '#bf00ff' },
-        { name: 'CJ', emoji: '🗳️', times: ['Vote Based'], color: '#a855f7', isVoteDependent: true }
-      ]
-    },
-    {
-      name: 'PHW',
-      color: '#fbbf24',
-      events: [
-        { name: 'Bear', emoji: '🧸', times: ['13:00 UTC', '19:00 UTC'], color: '#00f0ff' },
-        { name: 'Foundry', emoji: '🔥', times: ['14:00 UTC', '21:00 UTC'], color: '#8efff9' },
-        { name: 'Canyon', emoji: '🏔️', times: ['14:00 UTC', '21:00 UTC'], color: '#bf00ff' },
-        { name: 'CJ', emoji: '🗳️', times: ['Vote Based'], color: '#a855f7', isVoteDependent: true }
-      ]
-    }
-  ];
+  // Load event data from centralized data files
+  const allianceEventData = getAllEvents();
 
   return (
     <section id="events" className="py-20 bg-gradient-to-br from-[#0f172a] to-[#050d1c] relative overflow-hidden">
@@ -135,6 +85,7 @@ const Events = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
               className="relative"
+              data-alliance={alliance.name}
             >
               <EventTimeline
                 allianceName={alliance.name}
@@ -172,7 +123,7 @@ const Events = () => {
               <span className="text-[#00f0ff]">event timings</span>.
             </p>
             <a
-              href="https://discord.gg/server1676"
+              href={serverConfig.discordLink}
               target="_blank"
               rel="noopener noreferrer"
               className="relative inline-block bg-gradient-to-r from-[#00f0ff] to-[#8efff9] text-[#050d1c] px-8 py-3 rounded-lg font-semibold font-mono hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-pulse-glow"

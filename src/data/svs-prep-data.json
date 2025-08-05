@@ -1,0 +1,185 @@
+[
+  {
+    "id": "svs-prep-3",
+    "title": "SVS Prep #3",
+    "dateRange": "August 1-6, 2024",
+    "status": "completed",
+    "victory": true,
+    "days": [
+      {
+        "name": "Day 1",
+        "description": "Resource Gathering",
+        "screenshotUrl": "/screenshots/svs-prep-3-day1.jpg",
+        "icon": "⛏️",
+        "placement": 1,
+        "points": 15420
+      },
+      {
+        "name": "Day 2", 
+        "description": "Building Power",
+        "screenshotUrl": "/screenshots/svs-prep-3-day2.jpg",
+        "icon": "🏗️",
+        "placement": 1,
+        "points": 18350
+      },
+      {
+        "name": "Day 3",
+        "description": "Troop Training",
+        "screenshotUrl": "/screenshots/svs-prep-3-day3.jpg", 
+        "icon": "⚔️",
+        "placement": 1,
+        "points": 22100
+      },
+      {
+        "name": "Day 4",
+        "description": "Tech Power",
+        "screenshotUrl": "/screenshots/svs-prep-3-day4.jpg",
+        "icon": "🔬",
+        "placement": 1,
+        "points": 19750
+      },
+      {
+        "name": "Day 5",
+        "description": "Killing Event",
+        "screenshotUrl": "/screenshots/svs-prep-3-day5.jpg",
+        "icon": "💀",
+        "placement": 1,
+        "points": 31200
+      }
+    ],
+    "overall": {
+      "name": "Overall Results",
+      "screenshotUrl": "/screenshots/svs-prep-3-overall.jpg",
+      "totalPoints": 106820,
+      "finalPlacement": 1,
+      "description": "Complete domination across all categories"
+    },
+    "highlights": [
+      "Perfect 5/5 daily victories",
+      "Highest total points in server history",
+      "15% margin over second place"
+    ]
+  },
+  {
+    "id": "svs-prep-2",
+    "title": "SVS Prep #2", 
+    "dateRange": "July 15-20, 2024",
+    "status": "completed",
+    "victory": true,
+    "days": [
+      {
+        "name": "Day 1",
+        "description": "Resource Gathering",
+        "screenshotUrl": "/screenshots/svs-prep-2-day1.jpg",
+        "icon": "⛏️",
+        "placement": 1,
+        "points": 14800
+      },
+      {
+        "name": "Day 2",
+        "description": "Building Power", 
+        "screenshotUrl": "/screenshots/svs-prep-2-day2.jpg",
+        "icon": "🏗️",
+        "placement": 2,
+        "points": 16900
+      },
+      {
+        "name": "Day 3",
+        "description": "Troop Training",
+        "screenshotUrl": "/screenshots/svs-prep-2-day3.jpg",
+        "icon": "⚔️", 
+        "placement": 1,
+        "points": 20500
+      },
+      {
+        "name": "Day 4",
+        "description": "Tech Power",
+        "screenshotUrl": "/screenshots/svs-prep-2-day4.jpg",
+        "icon": "🔬",
+        "placement": 1,
+        "points": 18200
+      },
+      {
+        "name": "Day 5",
+        "description": "Killing Event",
+        "screenshotUrl": "/screenshots/svs-prep-2-day5.jpg",
+        "icon": "💀",
+        "placement": 1,
+        "points": 28900
+      }
+    ],
+    "overall": {
+      "name": "Overall Results",
+      "screenshotUrl": "/screenshots/svs-prep-2-overall.jpg", 
+      "totalPoints": 99300,
+      "finalPlacement": 1,
+      "description": "Strong victory with minor Day 2 setback"
+    },
+    "highlights": [
+      "4/5 daily victories",
+      "Comeback victory after Day 2",
+      "Strongest killing event performance"
+    ]
+  },
+  {
+    "id": "svs-prep-1",
+    "title": "SVS Prep #1",
+    "dateRange": "June 20-25, 2024", 
+    "status": "completed",
+    "victory": true,
+    "days": [
+      {
+        "name": "Day 1",
+        "description": "Resource Gathering",
+        "screenshotUrl": "/screenshots/svs-prep-1-day1.jpg",
+        "icon": "⛏️",
+        "placement": 1,
+        "points": 13200
+      },
+      {
+        "name": "Day 2",
+        "description": "Building Power",
+        "screenshotUrl": "/screenshots/svs-prep-1-day2.jpg", 
+        "icon": "🏗️",
+        "placement": 1,
+        "points": 15600
+      },
+      {
+        "name": "Day 3",
+        "description": "Troop Training",
+        "screenshotUrl": "/screenshots/svs-prep-1-day3.jpg",
+        "icon": "⚔️",
+        "placement": 1,
+        "points": 18750
+      },
+      {
+        "name": "Day 4",
+        "description": "Tech Power", 
+        "screenshotUrl": "/screenshots/svs-prep-1-day4.jpg",
+        "icon": "🔬",
+        "placement": 1,
+        "points": 17400
+      },
+      {
+        "name": "Day 5",
+        "description": "Killing Event",
+        "screenshotUrl": "/screenshots/svs-prep-1-day5.jpg",
+        "icon": "💀",
+        "placement": 1,
+        "points": 25800
+      }
+    ],
+    "overall": {
+      "name": "Overall Results",
+      "screenshotUrl": "/screenshots/svs-prep-1-overall.jpg",
+      "totalPoints": 90750,
+      "finalPlacement": 1,
+      "description": "Inaugural victory establishing server dominance"
+    },
+    "highlights": [
+      "Perfect 5/5 daily victories",
+      "First SVS prep victory",
+      "Set the foundation for future success"
+    ]
+  }
+]

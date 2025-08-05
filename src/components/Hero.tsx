@@ -367,41 +367,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Cyberpunk Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer group"
-        onClick={() => {
-          const alliancesSection = document.getElementById('alliances');
-          if (alliancesSection) {
-            alliancesSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="relative w-10 h-14 border-2 border-[#00f0ff] rounded-lg flex justify-center panel-neon group-hover:border-[#8efff9] transition-colors duration-300"
-          style={{ boxShadow: '0 0 15px rgba(0, 240, 255, 0.4)' }}
-        >
-          <motion.div
-            animate={{ y: [0, 18, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1.5 h-5 bg-[#00f0ff] rounded-full mt-2 group-hover:bg-[#8efff9] transition-colors duration-300"
-            style={{ boxShadow: '0 0 8px #00f0ff' }}
-          />
-          {/* Corner accents */}
-          <div className="absolute -top-1 -left-1 w-3 h-3 border-l-2 border-t-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
-          <div className="absolute -top-1 -right-1 w-3 h-3 border-r-2 border-t-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l-2 border-b-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r-2 border-b-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
-        </motion.div>
-        <div className="text-[#8efff9] text-xs font-mono mt-3 text-center group-hover:text-[#00f0ff] transition-colors duration-300">
-          SCROLL_DOWN
-        </div>
-      </motion.div>
+
     </section>
   );
 };

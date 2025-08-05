@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Menu, X, Shield, Users, Calendar, MessageCircle, Scroll, UserPlus } from 'lucide-react';
+import { Menu, X, Shield, Users, Calendar, Camera, Scroll } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,9 +15,8 @@ const Navigation = () => {
     { href: '#home', label: 'Home', icon: Shield },
     { href: '#alliances', label: 'Alliances', icon: Users },
     { href: '#events', label: 'Events', icon: Calendar },
-    { href: '#harmony', label: 'Harmony', icon: MessageCircle },
+    { href: '#svs-prep', label: 'SVS Prep', icon: Camera },
     { href: '#rules', label: 'Rules', icon: Scroll },
-    { href: '#join', label: 'Join', icon: UserPlus },
   ];
 
   useEffect(() => {

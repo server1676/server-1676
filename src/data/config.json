@@ -1,0 +1,16 @@
+{
+  "serverName": "NAP5 Alliance Network",
+  "serverNumber": "1676",
+  "napSystem": "NAP5",
+  "totalMembers": 450,
+  "discordLink": "https://discord.gg/server1676",
+  "website": {
+    "title": "Server 1676 - Snow Battle Championship",
+    "description": "Five elite alliances united under the NAP5 system - the most strategic and coordinated alliance network in Whiteout Survival."
+  },
+  "status": {
+    "operational": true,
+    "svsRecord": "UNDEFEATED",
+    "lastUpdated": "2024-01-15"
+  }
+}

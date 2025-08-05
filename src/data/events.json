@@ -1,0 +1,157 @@
+[
+  {
+    "name": "TH3",
+    "color": "#00f0ff",
+    "events": [
+      {
+        "name": "Bear",
+        "emoji": "🧸",
+        "times": ["13:00 UTC", "19:00 UTC"],
+        "color": "#00f0ff"
+      },
+      {
+        "name": "Foundry",
+        "emoji": "🔥",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#8efff9"
+      },
+      {
+        "name": "Canyon",
+        "emoji": "🏔️",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#bf00ff"
+      },
+      {
+        "name": "CJ",
+        "emoji": "🗳️",
+        "times": ["Vote Based"],
+        "color": "#a855f7",
+        "isVoteDependent": true
+      }
+    ]
+  },
+  {
+    "name": "GOW",
+    "color": "#8efff9",
+    "events": [
+      {
+        "name": "Bear",
+        "emoji": "🧸",
+        "times": ["13:00 UTC", "19:00 UTC"],
+        "color": "#00f0ff"
+      },
+      {
+        "name": "Foundry",
+        "emoji": "🔥",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#8efff9"
+      },
+      {
+        "name": "Canyon",
+        "emoji": "🏔️",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#bf00ff"
+      },
+      {
+        "name": "CJ",
+        "emoji": "🗳️",
+        "times": ["Vote Based"],
+        "color": "#a855f7",
+        "isVoteDependent": true
+      }
+    ]
+  },
+  {
+    "name": "RIS",
+    "color": "#bf00ff",
+    "events": [
+      {
+        "name": "Bear",
+        "emoji": "🧸",
+        "times": ["13:00 UTC", "19:00 UTC"],
+        "color": "#00f0ff"
+      },
+      {
+        "name": "Foundry",
+        "emoji": "🔥",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#8efff9"
+      },
+      {
+        "name": "Canyon",
+        "emoji": "🏔️",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#bf00ff"
+      },
+      {
+        "name": "CJ",
+        "emoji": "🗳️",
+        "times": ["Vote Based"],
+        "color": "#a855f7",
+        "isVoteDependent": true
+      }
+    ]
+  },
+  {
+    "name": "3NG",
+    "color": "#ff004f",
+    "events": [
+      {
+        "name": "Bear",
+        "emoji": "🧸",
+        "times": ["13:00 UTC", "19:00 UTC"],
+        "color": "#00f0ff"
+      },
+      {
+        "name": "Foundry",
+        "emoji": "🔥",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#8efff9"
+      },
+      {
+        "name": "Canyon",
+        "emoji": "🏔️",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#bf00ff"
+      },
+      {
+        "name": "CJ",
+        "emoji": "🗳️",
+        "times": ["Vote Based"],
+        "color": "#a855f7",
+        "isVoteDependent": true
+      }
+    ]
+  },
+  {
+    "name": "PHW",
+    "color": "#fbbf24",
+    "events": [
+      {
+        "name": "Bear",
+        "emoji": "🧸",
+        "times": ["13:00 UTC", "19:00 UTC"],
+        "color": "#00f0ff"
+      },
+      {
+        "name": "Foundry",
+        "emoji": "🔥",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#8efff9"
+      },
+      {
+        "name": "Canyon",
+        "emoji": "🏔️",
+        "times": ["14:00 UTC", "21:00 UTC"],
+        "color": "#bf00ff"
+      },
+      {
+        "name": "CJ",
+        "emoji": "🗳️",
+        "times": ["Vote Based"],
+        "color": "#a855f7",
+        "isVoteDependent": true
+      }
+    ]
+  }
+]

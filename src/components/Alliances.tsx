@@ -1,21 +1,26 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Trophy, Users, Sword, Star, ArrowRight } from 'lucide-react';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { Trophy, Users, Sword } from 'lucide-react';
+import { getAlliances, getTotalMembers, serverConfig } from '@/data';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 }
 
 const Alliances = () => {
-  const [selectedAlliance, setSelectedAlliance] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
+  
+  // Load alliance data from centralized data files
+  const alliances = getAlliances();
+  const totalMembers = getTotalMembers();
   
   useEffect(() => {
     // GSAP entrance animations
@@ -85,78 +90,7 @@ const Alliances = () => {
     }
   }, []);
 
-  const alliances = [
-    {
-      id: 'th3',
-      name: 'TH3',
-      fullName: 'The Third Empire',
-      rank: 1,
-      members: 100,
-      svsScore: 'Alliance Power #1',
-      description: 'Born from the fusion of AOT and 3NG, TH3 represents elite strategic excellence and coordinated warfare.',
-      achievements: ['#1 Alliance Power Ranking', 'Top-ranked in Crazy Joe', 'SVS Champions'],
-      leader: 'Elite Command',
-      color: '#00f0ff',
-      bgGradient: 'from-[#00f0ff]/20 to-[#8efff9]/20',
-      tagline: 'Fusion. Power. Strategy.'
-    },
-    {
-      id: 'gow',
-      name: 'GOW',
-      fullName: 'Guardians of Winter',
-      rank: 2,
-      members: 95,
-      svsScore: 'NAP5 Core',
-      description: 'Defensive specialists and strategic coordinators maintaining server stability and tactical excellence.',
-      achievements: ['NAP5 Founder', 'Strategic Defense', 'Unity Champions'],
-      leader: 'Winter Command',
-      color: '#8efff9',
-      bgGradient: 'from-[#8efff9]/20 to-[#00f0ff]/20',
-      tagline: 'Defense. Unity. Honor.'
-    },
-    {
-      id: 'ris',
-      name: 'RIS',
-      fullName: 'Rising Storm',
-      rank: 3,
-      members: 88,
-      svsScore: 'NAP5 Elite',
-      description: 'Tactical innovators specializing in coordinated strikes and strategic positioning within NAP5.',
-      achievements: ['NAP5 Core Member', 'Tactical Excellence', 'Event Coordination'],
-      leader: 'Storm Leader',
-      color: '#bf00ff',
-      bgGradient: 'from-[#bf00ff]/20 to-[#ff004f]/20',
-      tagline: 'Innovation. Precision. Storm.'
-    },
-    {
-      id: '3ng',
-      name: '3NG',
-      fullName: 'Third Generation',
-      rank: 4,
-      members: 85,
-      svsScore: 'NAP5 Veteran',
-      description: 'Originally from server 1654, 3NG brings veteran experience and strategic depth to NAP5.',
-      achievements: ['Cross-Server Veterans', 'Strategic Experience', 'NAP5 Founders'],
-      leader: 'Veteran Command',
-      color: '#ff004f',
-      bgGradient: 'from-[#ff004f]/20 to-[#bf00ff]/20',
-      tagline: 'Experience. Loyalty. Excellence.'
-    },
-    {
-      id: 'phw',
-      name: 'PHW',
-      fullName: 'Phoenix Wings',
-      rank: 5,
-      members: 82,
-      svsScore: 'NAP5 Rising',
-      description: 'Rising alliance within NAP5 system, known for adaptability and coordinated event participation.',
-      achievements: ['NAP5 Integration', 'Event Specialists', 'Rising Power'],
-      leader: 'Phoenix Commander',
-      color: '#fbbf24',
-      bgGradient: 'from-[#fbbf24]/20 to-[#f59e0b]/20',
-      tagline: 'Rebirth. Ascension. Victory.'
-    }
-  ];
+
 
   return (
     <section ref={sectionRef} id="alliances" className="py-20 bg-gradient-to-br from-[#050d1c] to-[#0f172a] relative overflow-hidden">
@@ -192,7 +126,7 @@ const Alliances = () => {
             the most strategic and coordinated alliance network in Whiteout Survival.
           </p>
           <div className="mt-6 text-[#8efff9] font-mono text-sm">
-            &gt; STATUS: FULLY_OPERATIONAL | MEMBERS: 450+ | SVS_RECORD: UNDEFEATED
+            &gt; STATUS: {serverConfig.status.operational ? 'FULLY_OPERATIONAL' : 'MAINTENANCE'} | MEMBERS: {totalMembers}+ | SVS_RECORD: {serverConfig.status.svsRecord}
           </div>
         </motion.div>
 
@@ -205,10 +139,7 @@ const Alliances = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative group cursor-pointer"
-              onClick={() => setSelectedAlliance(
-                selectedAlliance === alliance.id ? null : alliance.id
-              )}
+              className="relative group"
             >
               <div className={`relative panel-neon bg-gradient-to-br ${alliance.bgGradient} backdrop-blur-sm rounded-lg p-6 hover:border-[#00f0ff]/40 transition-all duration-300 transform hover:-translate-y-2 group animate-pulse-glow h-full flex flex-col`}>
                 {/* Corner Accents */}
@@ -269,7 +200,7 @@ const Alliances = () => {
                 </div>
 
                 {/* Achievements Preview */}
-                <div className="flex items-center justify-between mt-auto">
+                <div className="mb-4">
                   <div className="flex items-center space-x-1 flex-wrap gap-1">
                     {alliance.achievements.slice(0, 2).map((achievement, i) => (
                       <span 
@@ -285,78 +216,91 @@ const Alliances = () => {
                       </span>
                     ))}
                   </div>
-                  <ArrowRight 
-                    className="w-5 h-5 text-[#00f0ff] group-hover:translate-x-1 transition-transform" 
-                    style={{ filter: 'drop-shadow(0 0 3px #00f0ff)' }}
-                  />
                 </div>
 
-                {/* Expanded Details - Overlaid on card content */}
-                {selectedAlliance === alliance.id && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-gradient-to-br from-[#0f172a]/95 to-[#050d1c]/95 backdrop-blur-sm rounded-lg p-6 flex flex-col overflow-y-auto"
+                {/* Action Buttons */}
+                <div className="flex flex-col space-y-2 mt-auto">
+                  <button 
+                    className="w-full py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 text-[#050d1c] text-sm border-2"
+                    style={{ 
+                      background: `linear-gradient(to right, ${alliance.color}, ${alliance.color}dd)`,
+                      borderColor: alliance.color,
+                      boxShadow: `0 0 10px ${alliance.color}40`
+                    }}
+                    onClick={() => {
+                      // Discord join logic here
+                      console.log(`Joining ${alliance.name} Discord`);
+                    }}
                   >
-                    {/* Close Button */}
-                    <button 
-                      className="absolute top-4 right-4 text-[#00f0ff] hover:text-white transition-colors"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedAlliance(null);
-                      }}
-                    >
-                      <ArrowRight className="w-5 h-5 rotate-45 transform" />
-                    </button>
+                    Join {alliance.name} Discord
+                  </button>
+                  
+                  <button 
+                    className="w-full py-2 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 text-sm border-2 bg-transparent hover:bg-white/10"
+                    style={{ 
+                      borderColor: alliance.color,
+                      color: alliance.color
+                    }}
+                    onClick={(e) => {
+                      // Add visual feedback
+                      const button = e.currentTarget;
+                      button.style.transform = 'scale(0.95)';
+                      setTimeout(() => {
+                        button.style.transform = '';
+                      }, 150);
+                      
+                      // Custom smooth scroll function
+                      const smoothScrollTo = (target: Element, duration: number = 1000) => {
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                        const startPosition = window.pageYOffset;
+                        const distance = targetPosition - startPosition;
+                        let startTime: number | null = null;
 
-                    <div className="flex-grow">
-                      <h4 className="font-semibold text-[#00f0ff] mb-3 text-lg">{alliance.fullName}</h4>
-                      
-                      <div className="mb-4">
-                        <h5 className="font-semibold text-white mb-2">Leadership</h5>
-                        <p className="text-gray-300 text-sm">{alliance.leader}</p>
-                      </div>
-                      
-                      <div className="mb-4">
-                        <h5 className="font-semibold text-white mb-2">All Achievements</h5>
-                        <div className="space-y-2">
-                          {alliance.achievements.map((achievement, i) => (
-                            <div key={i} className="flex items-center space-x-2">
-                              <Star className="w-3 h-3" style={{ color: alliance.color }} />
-                              <span className="text-xs text-gray-300">{achievement}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      <div className="mb-4">
-                        <h5 className="font-semibold text-white mb-2">Recent Events</h5>
-                        <div className="space-y-2">
-                          <div className="bg-white/10 rounded p-2">
-                            <div className="text-sm font-medium text-white">SVS Championship</div>
-                            <div className="text-xs text-gray-400">Last Weekend</div>
-                          </div>
-                          <div className="bg-white/10 rounded p-2">
-                            <div className="text-sm font-medium text-white">Alliance Training</div>
-                            <div className="text-xs text-gray-400">3 days ago</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <button 
-                      className="mt-4 w-full py-2 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 text-[#050d1c] text-sm"
-                      style={{ 
-                        background: `linear-gradient(to right, ${alliance.color}, ${alliance.color}dd)`,
-                        boxShadow: `0 0 10px ${alliance.color}40`
-                      }}
-                    >
-                      Apply to Join {alliance.name}
-                    </button>
-                  </motion.div>
-                )}
+                        const animation = (currentTime: number) => {
+                          if (startTime === null) startTime = currentTime;
+                          const timeElapsed = currentTime - startTime;
+                          const run = ease(timeElapsed, startPosition, distance, duration);
+                          window.scrollTo(0, run);
+                          if (timeElapsed < duration) requestAnimationFrame(animation);
+                        };
+
+                        // Easing function for smooth animation
+                        const ease = (t: number, b: number, c: number, d: number) => {
+                          t /= d / 2;
+                          if (t < 1) return c / 2 * t * t + b;
+                          t--;
+                          return -c / 2 * (t * (t - 2) - 1) + b;
+                        };
+
+                        requestAnimationFrame(animation);
+                      };
+
+                      const eventsSection = document.getElementById('events');
+                      if (eventsSection) {
+                        // Smooth scroll to events section
+                        smoothScrollTo(eventsSection, 1000);
+                        
+                        // Highlight the specific alliance timeline after scrolling
+                        setTimeout(() => {
+                          const allianceTimeline = document.querySelector(`[data-alliance="${alliance.name}"]`);
+                          if (allianceTimeline) {
+                            smoothScrollTo(allianceTimeline, 800);
+                            
+                            // Add a temporary highlight effect
+                            setTimeout(() => {
+                              allianceTimeline.classList.add('animate-pulse');
+                              setTimeout(() => {
+                                allianceTimeline.classList.remove('animate-pulse');
+                              }, 2000);
+                            }, 800);
+                          }
+                        }, 1200);
+                      }
+                    }}
+                  >
+                    View Event Timings
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
