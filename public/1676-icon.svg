@@ -1,0 +1,64 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with neon glow -->
+  <circle cx="32" cy="32" r="30" fill="url(#bgGradient)" stroke="url(#borderGradient)" stroke-width="2"/>
+  
+  <!-- Inner glow circle -->
+  <circle cx="32" cy="32" r="26" fill="none" stroke="url(#innerGlow)" stroke-width="1" opacity="0.6"/>
+  
+  <!-- 1676 Text -->
+  <text x="32" y="38" font-family="monospace" font-size="12" font-weight="bold" text-anchor="middle" fill="url(#textGradient)">1676</text>
+  
+  <!-- Corner accents -->
+  <rect x="8" y="8" width="6" height="1.5" fill="#00f0ff"/>
+  <rect x="8" y="8" width="1.5" height="6" fill="#00f0ff"/>
+  <rect x="50" y="8" width="6" height="1.5" fill="#00f0ff"/>
+  <rect x="54.5" y="8" width="1.5" height="6" fill="#00f0ff"/>
+  <rect x="8" y="54.5" width="6" height="1.5" fill="#00f0ff"/>
+  <rect x="8" y="50" width="1.5" height="6" fill="#00f0ff"/>
+  <rect x="50" y="54.5" width="6" height="1.5" fill="#00f0ff"/>
+  <rect x="54.5" y="50" width="1.5" height="6" fill="#00f0ff"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050d1c"/>
+    </radialGradient>
+    
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#8efff9"/>
+      <stop offset="100%" stop-color="#00f0ff"/>
+    </linearGradient>
+    
+    <linearGradient id="innerGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8efff9" stop-opacity="0.3"/>
+    </linearGradient>
+    
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="50%" stop-color="#8efff9"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+    
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Apply glow to the entire icon -->
+  <style>
+    svg {
+      filter: drop-shadow(0 0 6px #00f0ff40);
+    }
+    text {
+      filter: url(#glow);
+    }
+  </style>
+</svg>

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Snowflake, Zap } from 'lucide-react';
+import { Snowflake, Zap, Users } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -292,7 +292,7 @@ const Hero = () => {
             className="space-y-4"
           >
             <p className="text-xl sm:text-2xl lg:text-3xl text-[#00f0ff] font-medium font-mono tracking-wide">
-              Strategy, Unity, and Harmony in Whiteout Survival
+              Strategy, Unity, and Harmony
             </p>
             <div className="text-[#8efff9] text-sm lg:text-base font-mono">
               &gt; STATUS: OPERATIONAL | NAP5 SYSTEM ACTIVE | SVS VICTORIES: 23+
@@ -308,7 +308,7 @@ const Hero = () => {
           >
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
               Experience the most organized and strategic Whiteout Survival server. 
-              <span className="text-[#00f0ff]"> Server 1676 </span> has never lost a preparation phase in SVS, 
+              <span className="text-[#00f0ff]"> State 1676 </span> has never lost a preparation phase in SVS, 
               showcasing unmatched coordination and commitment.
             </p>
             <div ref={statsRef} className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mt-8">
@@ -336,7 +336,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <a
-              href="https://discord.gg/server1676"
+              href="https://discord.gg/pyRZ8fhe"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-4 bg-gradient-to-r from-[#00f0ff] to-[#8efff9] text-[#050d1c] rounded-lg font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3 animate-pulse-glow"
@@ -360,7 +360,7 @@ const Hero = () => {
               className="group relative px-8 py-4 panel-neon text-[#00f0ff] rounded-lg font-semibold text-lg font-mono transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3"
             >
               <span>VIEW NAP5 ALLIANCES</span>
-              <Shield className="w-5 h-5" />
+              <Users className="w-5 h-5" />
             </a>
           </motion.div>
 

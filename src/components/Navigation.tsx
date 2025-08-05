@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { Menu, X, Shield, Users, Calendar, Camera, Scroll } from 'lucide-react';
+import { Menu, X, Home, Users, Calendar, Camera, Scroll } from 'lucide-react';
+import State1676Icon from './State1676Icon';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,7 @@ const Navigation = () => {
   const navItemsRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
-    { href: '#home', label: 'Home', icon: Shield },
+    { href: '#home', label: 'Home', icon: Home },
     { href: '#alliances', label: 'Alliances', icon: Users },
     { href: '#events', label: 'Events', icon: Calendar },
     { href: '#svs-prep', label: 'SVS Prep', icon: Camera },
@@ -117,11 +118,14 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-20">
             <div ref={logoRef} className="flex items-center space-x-3">
               <div className="relative">
-                <Shield className="w-8 h-8 text-[#00f0ff]" style={{ filter: 'drop-shadow(0 0 5px #00f0ff)' }} />
+                <State1676Icon 
+                  size={32} 
+                  style={{ filter: 'drop-shadow(0 0 5px #00f0ff)' }}
+                />
                 <div className="absolute -inset-1 border border-[#00f0ff]/30 rounded" />
               </div>
               <span className="font-mono font-bold text-xl text-[#00f0ff]">
-                SERVER_1676
+                STATE_1676
               </span>
             </div>
             
@@ -139,7 +143,7 @@ const Navigation = () => {
               ))}
               
               <a
-                href="https://discord.gg/server1676"
+                href="https://discord.gg/pyRZ8fhe"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative bg-gradient-to-r from-[#00f0ff] to-[#8efff9] text-[#050d1c] px-6 py-2 rounded-lg font-semibold font-mono transition-all duration-200 transform hover:scale-105 animate-pulse-glow"
@@ -162,8 +166,11 @@ const Navigation = () => {
         <header className="fixed top-0 left-0 right-0 z-50 panel-neon backdrop-blur-md border-b border-[#00f0ff]/30">
           <div className="flex items-center justify-between px-4 h-16">
             <div className="flex items-center space-x-2">
-              <Shield className="w-7 h-7 text-[#00f0ff]" style={{ filter: 'drop-shadow(0 0 3px #00f0ff)' }} />
-              <span className="font-mono font-bold text-lg text-[#00f0ff]">SERVER_1676</span>
+              <State1676Icon 
+                size={28} 
+                style={{ filter: 'drop-shadow(0 0 3px #00f0ff)' }}
+              />
+              <span className="font-mono font-bold text-lg text-[#00f0ff]">STATE_1676</span>
             </div>
             
             <button

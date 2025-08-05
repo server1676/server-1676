@@ -228,8 +228,13 @@ const Alliances = () => {
                       boxShadow: `0 0 10px ${alliance.color}40`
                     }}
                     onClick={() => {
-                      // Discord join logic here
-                      console.log(`Joining ${alliance.name} Discord`);
+                      // Get alliance-specific Discord link
+                      const discordLinks = serverConfig.allianceDiscordLinks;
+                      const allianceKey = alliance.id.toLowerCase();
+                      const discordUrl = discordLinks[allianceKey as keyof typeof discordLinks] || serverConfig.discordLink;
+                      
+                      // Open Discord link in new tab
+                      window.open(discordUrl, '_blank', 'noopener,noreferrer');
                     }}
                   >
                     Join {alliance.name} Discord

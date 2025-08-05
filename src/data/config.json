@@ -3,9 +3,17 @@
   "serverNumber": "1676",
   "napSystem": "NAP5",
   "totalMembers": 450,
-  "discordLink": "https://discord.gg/server1676",
+  "discordLink": "https://discord.gg/pyRZ8fhe",
+  "allianceDiscordLinks": {
+    "state": "https://discord.gg/pyRZ8fhe",
+    "th3": "https://discord.gg/KpwZbYa7",
+    "3ng": "https://discord.gg/KpwZbYa7",
+    "gow": "https://discord.gg/pyRZ8fhe",
+    "ris": "https://discord.gg/pyRZ8fhe",
+    "phw": "https://discord.gg/pyRZ8fhe"
+  },
   "website": {
-    "title": "Server 1676 - Snow Battle Championship",
+    "title": "State 1676 - Snow Battle Championship",
     "description": "Five elite alliances united under the NAP5 system - the most strategic and coordinated alliance network in Whiteout Survival."
   },
   "status": {

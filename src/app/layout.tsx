@@ -25,20 +25,20 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Server 1676 - Strategy, Unity, and Harmony | Whiteout Survival",
-  description: "Join Server 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events. Home to NAP5 alliances: TH3, GOW, STG, LAG, and AMF.",
-  keywords: "Whiteout Survival, Server 1676, NAP5, Alliance, Strategy Game, Gaming Community, TH3, GOW, STG, LAG, AMF",
-  authors: [{ name: "Server 1676 Community" }],
+  title: "State 1676 - Strategy, Unity, and Harmony | Whiteout Survival",
+  description: "Join State 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events. Home to NAP5 alliances: TH3, GOW, STG, LAG, and AMF.",
+  keywords: "Whiteout Survival, State 1676, NAP5, Alliance, Strategy Game, Gaming Community, TH3, GOW, STG, LAG, AMF",
+  authors: [{ name: "State 1676 Community" }],
   openGraph: {
-    title: "Server 1676 - Strategy, Unity, and Harmony",
-    description: "Join Server 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events.",
+    title: "State 1676 - Strategy, Unity, and Harmony",
+    description: "Join State 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Server 1676 - Strategy, Unity, and Harmony",
-    description: "Join Server 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events.",
+    title: "State 1676 - Strategy, Unity, and Harmony",
+    description: "Join State 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events.",
   },
 
 };
