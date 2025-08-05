@@ -14,7 +14,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Navigation />
       <Hero />
-      <ServerBanner />
+      {/* <ServerBanner /> */}
       <Alliances />
       <Events />
       <SVSPrepTracker preps={svsPreps} />
