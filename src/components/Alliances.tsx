@@ -283,43 +283,7 @@ const Alliances = () => {
           ))}
         </div>
 
-        {/* NAP5 Agreement Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-20 bg-gradient-to-r from-[#101820] to-[#1e293b] rounded-2xl p-8 lg:p-12 text-center"
-        >
-          <h3 className="text-3xl font-heading font-bold text-white mb-4">
-            The NAP5 Agreement
-          </h3>
-          <p className="text-xl text-[#9DDFFF] mb-8 max-w-3xl mx-auto">
-            A non-aggression pact that ensures peaceful coexistence, mutual support, 
-            and coordinated strength between our five core alliances.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="bg-white/10 rounded-lg p-6">
-              <h4 className="font-semibold text-[#9DDFFF] mb-2">Mutual Protection</h4>
-              <p className="text-gray-300 text-sm">
-                All NAP5 alliances pledge mutual defense and support during conflicts.
-              </p>
-            </div>
-            <div className="bg-white/10 rounded-lg p-6">
-              <h4 className="font-semibold text-[#9DDFFF] mb-2">Resource Sharing</h4>
-              <p className="text-gray-300 text-sm">
-                Coordinated resource management and sharing during critical events.
-              </p>
-            </div>
-            <div className="bg-white/10 rounded-lg p-6">
-              <h4 className="font-semibold text-[#9DDFFF] mb-2">Strategic Unity</h4>
-              <p className="text-gray-300 text-sm">
-                Joint strategic planning for SVS events and server dominance.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );
