@@ -2,7 +2,7 @@
   {
     "id": "th3",
     "name": "TH3",
-    "fullName": "The Third Empire",
+    "fullName": "ᴿᴼᵞᴬᴸ᭄тιтαɴѕ࿐",
     "rank": 1,
     "members": 100,
     "svsScore": "Alliance Power #1",
@@ -20,9 +20,9 @@
   {
     "id": "gow",
     "name": "GOW",
-    "fullName": "Guardians of Winter",
+    "fullName": "GodsofWar",
     "rank": 2,
-    "members": 95,
+    "members": 100,
     "svsScore": "NAP5 Core",
     "description": "Defensive specialists and strategic coordinators maintaining server stability and tactical excellence.",
     "achievements": [
@@ -38,9 +38,9 @@
   {
     "id": "ris",
     "name": "RIS",
-    "fullName": "Rising Storm",
+    "fullName": "Rise",
     "rank": 3,
-    "members": 88,
+    "members": 96,
     "svsScore": "NAP5 Elite",
     "description": "Tactical innovators specializing in coordinated strikes and strategic positioning within NAP5.",
     "achievements": [
@@ -54,11 +54,11 @@
     "tagline": "Innovation. Precision. Storm."
   },
   {
-    "id": "3ng",
-    "name": "3NG",
-    "fullName": "Third Generation",
-    "rank": 4,
-    "members": 85,
+          "id": "3ng",
+      "name": "3NG",
+      "fullName": "ᴿᴼᵞᴬᴸ᭄ғαмιly࿐",
+      "rank": 4,
+      "members": 97,
     "svsScore": "NAP5 Veteran",
     "description": "Originally from server 1654, 3NG brings veteran experience and strategic depth to NAP5.",
     "achievements": [
@@ -74,9 +74,9 @@
   {
     "id": "phw",
     "name": "PHW",
-    "fullName": "Phoenix Wings",
+    "fullName": "PhoenixWarrios",
     "rank": 5,
-    "members": 82,
+    "members": 89,
     "svsScore": "NAP5 Rising",
     "description": "Rising alliance within NAP5 system, known for adaptability and coordinated event participation.",
     "achievements": [
