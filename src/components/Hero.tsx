@@ -2,23 +2,65 @@
 
 import { motion } from 'framer-motion';
 import { Shield, Snowflake, Zap } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { TextPlugin } from 'gsap/TextPlugin';
 import Loader from './Loader';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger, TextPlugin);
+}
 
 const Hero = () => {
   const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [typewriterText, setTypewriterText] = useState('');
-  const fullText = 'WHITEOUT SERVER 1676';
+  const [snowflakeData, setSnowflakeData] = useState<Array<{x: number, y: number, duration: number, delay: number}>>([]);
+  const [particleData, setParticleData] = useState<Array<{x: number, y: number, targetX: number, targetY: number, duration: number}>>([]);
+  const fullText = '1676';
+  
+  // GSAP refs
+  const heroRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const buttonsRef = useRef<HTMLDivElement>(null);
+  const glitchRef = useRef<HTMLSpanElement>(null);
   
   useEffect(() => {
     // Set client flag and initial dimensions on client side
     setIsClient(true);
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    setDimensions({ width, height });
+    
+    // Generate deterministic animation data on client side only
+    const snowflakes = Array.from({ length: 15 }, (_, i) => {
+      const seed = i * 12345; // Use index as seed for deterministic randomness
+      return {
+        x: (seed % width),
+        y: -20,
+        duration: 3 + (seed % 4),
+        delay: (seed % 2000) / 1000
+      };
     });
+    
+    const particles = Array.from({ length: 8 }, (_, i) => {
+      const seed = i * 54321;
+      return {
+        x: (seed % width),
+        y: (seed % height),
+        targetX: ((seed * 2) % width),
+        targetY: ((seed * 3) % height),
+        duration: 4 + (seed % 6)
+      };
+    });
+    
+    setSnowflakeData(snowflakes);
+    setParticleData(particles);
 
     // Update dimensions on resize
     const handleResize = () => {
@@ -33,21 +75,106 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Typewriter effect - only start after loading is complete
-    if (!isLoading) {
-      let i = 0;
-      const typeTimer = setInterval(() => {
-        if (i < fullText.length) {
-          setTypewriterText(fullText.slice(0, i + 1));
-          i++;
-        } else {
-          clearInterval(typeTimer);
+    // GSAP animations - only start after loading is complete
+    if (!isLoading && isClient) {
+      // Main entrance timeline
+      const tl = gsap.timeline({ delay: 0.5 });
+      
+      // Title entrance with glitch effect
+      tl.fromTo(titleRef.current, 
+        { opacity: 0, y: 50, rotationX: -90 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          rotationX: 0,
+          duration: 1,
+          ease: "power3.out"
         }
-      }, 150);
-
-      return () => clearInterval(typeTimer);
+      );
+      
+      // Typewriter effect with GSAP
+      tl.to(glitchRef.current, {
+        duration: fullText.length * 0.08,
+        text: fullText,
+        ease: "none",
+        onUpdate: function() {
+          // Add glitch effect deterministically
+          const progress = this.progress();
+          if (progress > 0 && Math.floor(progress * 100) % 20 === 0) {
+            gsap.to(glitchRef.current, {
+              duration: 0.1,
+              skewX: (progress * 10) % 5 - 2.5,
+              textShadow: '2px 0 #ff004f, -2px 0 #00f0ff',
+              yoyo: true,
+              repeat: 1
+            });
+          }
+        }
+      }, "-=0.5");
+      
+      // Subtitle and other elements
+      tl.fromTo(subtitleRef.current,
+        { opacity: 0, y: 30 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.8,
+          ease: "power2.out" 
+        },
+        "-=0.3"
+      );
+      
+      // Stats cards with stagger
+      tl.fromTo(statsRef.current?.children || [],
+        { opacity: 0, y: 40, scale: 0.8 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "back.out(1.7)"
+        },
+        "-=0.4"
+      );
+      
+      // Buttons entrance
+      tl.fromTo(buttonsRef.current?.children || [],
+        { opacity: 0, y: 30, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out"
+        },
+        "-=0.2"
+      );
+      
+      // Continuous glitch effect on title
+      gsap.to(glitchRef.current, {
+        duration: 0.1,
+        repeat: -1,
+        repeatDelay: 3.5,
+        yoyo: true,
+        ease: "power2.inOut",
+        textShadow: '1px 0 #ff004f, -1px 0 #00f0ff, 0 1px #8efff9',
+        delay: 2
+      });
+      
+      // Floating animation for stats cards
+      gsap.to(statsRef.current?.children || [], {
+        y: "-=10",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: 0.3,
+        delay: 3
+      });
     }
-  }, [isLoading]);
+  }, [isLoading, isClient, fullText]);
 
   const handleLoaderComplete = () => {
     setIsLoading(false);
@@ -58,7 +185,7 @@ const Hero = () => {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 sm:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 lg:py-16">
+    <section ref={heroRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 sm:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 lg:py-16">
       {/* CryoCore Neon Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#050d1c] via-[#0f172a] to-[#050d1c]">
         {/* Grid Pattern Overlay */}
@@ -77,24 +204,24 @@ const Hero = () => {
         
         {/* Animated Neon Snow Elements */}
         <div className="absolute inset-0">
-          {isClient && [...Array(15)].map((_, i) => (
+          {isClient && snowflakeData.map((snowflake, i) => (
             <motion.div
               key={i}
               className="absolute"
               initial={{ 
-                x: Math.random() * dimensions.width,
+                x: snowflake.x,
                 y: -20,
                 rotate: 0
               }}
               animate={{ 
                 y: dimensions.height + 20,
                 rotate: 360,
-                x: Math.random() * dimensions.width
+                x: snowflake.x + 100
               }}
               transition={{
-                duration: Math.random() * 4 + 3,
+                duration: snowflake.duration,
                 repeat: Infinity,
-                delay: Math.random() * 2
+                delay: snowflake.delay
               }}
             >
               <Snowflake 
@@ -107,21 +234,21 @@ const Hero = () => {
 
         {/* Floating Neon Particles */}
         <div className="absolute inset-0">
-          {isClient && [...Array(8)].map((_, i) => (
+          {isClient && particleData.map((particle, i) => (
             <motion.div
               key={`particle-${i}`}
               className="absolute w-1 h-1 bg-[#00f0ff] rounded-full opacity-80"
               style={{ boxShadow: '0 0 6px #00f0ff' }}
               initial={{ 
-                x: Math.random() * dimensions.width,
-                y: Math.random() * dimensions.height,
+                x: particle.x,
+                y: particle.y,
               }}
               animate={{ 
-                x: Math.random() * dimensions.width,
-                y: Math.random() * dimensions.height,
+                x: particle.targetX,
+                y: particle.targetY,
               }}
               transition={{
-                duration: Math.random() * 6 + 4,
+                duration: particle.duration,
                 repeat: Infinity,
                 repeatType: 'reverse',
                 ease: 'easeInOut'
@@ -146,18 +273,19 @@ const Hero = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="space-y-4"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-heading font-bold leading-tight">
+            <h1 ref={titleRef} className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-heading font-bold leading-tight">
               <span className="text-white">Welcome to</span>
               <br />
-              <span className="text-gradient text-glow-cyan font-mono tracking-wider">
-                {typewriterText}
-                <span className="animate-pulse">|</span>
+              <span ref={glitchRef} className="text-gradient text-glow-cyan font-mono tracking-wider cursor-pointer hover:text-[#ff004f] transition-colors duration-300">
+                
+                <span className="animate-pulse text-[#00f0ff]">|</span>
               </span>
             </h1>
           </motion.div>
 
           {/* Subtitle */}
           <motion.div
+            ref={subtitleRef}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -183,7 +311,7 @@ const Hero = () => {
               <span className="text-[#00f0ff]"> Server 1676 </span> has never lost a preparation phase in SVS, 
               showcasing unmatched coordination and commitment.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mt-8">
+            <div ref={statsRef} className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mt-8">
               <div className="panel-neon p-4 rounded-lg">
                 <div className="text-[#00f0ff] text-2xl font-bold">0</div>
                 <div className="text-gray-400 text-sm">SVS Prep Losses</div>
@@ -201,6 +329,7 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <motion.div
+            ref={buttonsRef}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}

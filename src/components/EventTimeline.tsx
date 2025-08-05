@@ -2,6 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 interface AllianceEvent {
   name: string;
@@ -27,6 +35,48 @@ const TimelineEvent = ({ event, index }: TimelineEventProps) => {
     threshold: 0.5,
     triggerOnce: true,
   });
+  
+  const timelineNodeRef = useRef<HTMLDivElement>(null);
+  const eventContentRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (eventInView && timelineNodeRef.current && eventContentRef.current) {
+      // Enhanced timeline node animation
+      gsap.fromTo(timelineNodeRef.current,
+        { scale: 0, rotation: -180 },
+        {
+          scale: 1,
+          rotation: 0,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          delay: index * 0.2
+        }
+      );
+      
+      // Content slide in
+      gsap.fromTo(eventContentRef.current,
+        { x: 100, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "power3.out",
+          delay: index * 0.2 + 0.3
+        }
+      );
+      
+      // Continuous glow effect for vote-dependent events
+      if (event.isVoteDependent) {
+        gsap.to(timelineNodeRef.current, {
+          boxShadow: '0 0 30px #a855f7',
+          duration: 1.5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
+      }
+    }
+  }, [eventInView, index, event.isVoteDependent]);
 
   return (
     <motion.div
@@ -36,15 +86,18 @@ const TimelineEvent = ({ event, index }: TimelineEventProps) => {
       transition={{ delay: index * 0.2, duration: 0.5 }}
       className="relative flex items-center space-x-4"
     >
-      {/* Timeline Node */}
-      <motion.div
-        className="relative z-10"
-        animate={eventInView ? { 
-          scale: [1, 1.2, 1],
-          boxShadow: [`0 0 0px ${event.color}`, `0 0 20px ${event.color}80`, `0 0 10px ${event.color}60`]
-        } : {}}
-        transition={{ duration: 1, delay: index * 0.2 + 0.3 }}
-      >
+              {/* Timeline Node */}
+        <motion.div
+          ref={timelineNodeRef}
+          className="relative z-10 cursor-pointer"
+          animate={eventInView ? { 
+            scale: [1, 1.2, 1],
+            boxShadow: [`0 0 0px ${event.color}`, `0 0 20px ${event.color}80`, `0 0 10px ${event.color}60`]
+          } : {}}
+          transition={{ duration: 1, delay: index * 0.2 + 0.3 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
         <div 
           className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl relative transition-all duration-500 ${
             event.isVoteDependent ? 'animate-pulse' : ''
@@ -77,7 +130,8 @@ const TimelineEvent = ({ event, index }: TimelineEventProps) => {
 
       {/* Event Content */}
       <motion.div
-        className={`flex-grow p-4 rounded-lg backdrop-blur-sm transition-all duration-300 ${
+        ref={eventContentRef}
+        className={`flex-grow p-4 rounded-lg backdrop-blur-sm transition-all duration-300 cursor-pointer hover:bg-opacity-80 ${
           event.isVoteDependent 
             ? 'bg-purple-500/20 border border-purple-500/40' 
             : 'bg-white/5 border border-gray-600/30'
@@ -89,6 +143,7 @@ const TimelineEvent = ({ event, index }: TimelineEventProps) => {
           borderColor: event.isVoteDependent ? '#a855f7' : event.color + '60'
         } : {}}
         transition={{ delay: index * 0.2 + 0.5, duration: 0.5 }}
+        whileHover={{ scale: 1.02, y: -2 }}
       >
         <div className="flex items-center justify-between">
           <div>
@@ -153,6 +208,47 @@ const EventTimeline = ({ allianceName, allianceColor, events }: EventTimelinePro
     threshold: 0.2,
     triggerOnce: true,
   });
+  
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (inView && timelineRef.current) {
+      // Alliance header entrance
+      gsap.fromTo(headerRef.current,
+        { opacity: 0, y: -30, rotationX: -90 },
+        {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.8,
+          ease: "power3.out"
+        }
+      );
+      
+      // Timeline line drawing animation
+      gsap.fromTo(lineRef.current,
+        { scaleY: 0, transformOrigin: "top" },
+        {
+          scaleY: 1,
+          duration: 1.5,
+          ease: "power2.out",
+          delay: 0.3
+        }
+      );
+      
+      // Pulsing glow effect for the line
+      gsap.to(lineRef.current, {
+        filter: `drop-shadow(0 0 8px ${allianceColor})`,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: 2
+      });
+    }
+  }, [inView, allianceColor]);
 
   return (
     <motion.div
@@ -162,8 +258,9 @@ const EventTimeline = ({ allianceName, allianceColor, events }: EventTimelinePro
       transition={{ duration: 0.6 }}
       className="relative"
     >
+      <div ref={timelineRef}>
       {/* Alliance Header */}
-      <div className="mb-8">
+      <div ref={headerRef} className="mb-8">
         <div className="flex items-center space-x-4 mb-4">
           <div 
             className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-lg font-mono relative"
@@ -200,6 +297,7 @@ const EventTimeline = ({ allianceName, allianceColor, events }: EventTimelinePro
       <div className="relative">
         {/* Vertical Line */}
         <div 
+          ref={lineRef}
           className="absolute left-8 top-0 w-0.5 h-full"
           style={{ 
             background: `linear-gradient(to bottom, ${allianceColor}80, ${allianceColor}20)`,
@@ -217,6 +315,7 @@ const EventTimeline = ({ allianceName, allianceColor, events }: EventTimelinePro
             />
           ))}
         </div>
+      </div>
       </div>
     </motion.div>
   );

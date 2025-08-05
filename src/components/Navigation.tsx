@@ -1,11 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { gsap } from 'gsap';
 import { Menu, X, Shield, Users, Calendar, MessageCircle, Scroll, UserPlus } from 'lucide-react';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const navItemsRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
     { href: '#home', label: 'Home', icon: Shield },
@@ -16,23 +20,113 @@ const Navigation = () => {
     { href: '#join', label: 'Join', icon: UserPlus },
   ];
 
+  useEffect(() => {
+    // GSAP Navigation entrance animation
+    const tl = gsap.timeline({ delay: 0.5 });
+    
+    // Slide in navigation from top
+    tl.fromTo(navRef.current,
+      { y: -100, opacity: 0 },
+      { 
+        y: 0, 
+        opacity: 1, 
+        duration: 1,
+        ease: "power3.out"
+      }
+    );
+    
+    // Logo glitch entrance
+    tl.fromTo(logoRef.current,
+      { scale: 0, rotation: -180 },
+      {
+        scale: 1,
+        rotation: 0,
+        duration: 0.8,
+        ease: "back.out(1.7)"
+      },
+      "-=0.5"
+    );
+    
+    // Stagger nav items
+    tl.fromTo(navItemsRef.current?.children || [],
+      { opacity: 0, x: -50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power2.out"
+      },
+      "-=0.3"
+    );
+    
+    // Continuous logo pulse
+    gsap.to(logoRef.current, {
+      scale: 1.1,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 2
+    });
+    
+    // Add hover animations to nav items
+    const navLinks = navItemsRef.current?.querySelectorAll('a');
+    navLinks?.forEach((link) => {
+      const handleMouseEnter = () => {
+        gsap.to(link, {
+          scale: 1.05,
+          textShadow: '0 0 10px #00f0ff',
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        
+        // Glitch effect
+        gsap.to(link, {
+          duration: 0.1,
+          skewX: 2,
+          yoyo: true,
+          repeat: 1
+        });
+      };
+      
+      const handleMouseLeave = () => {
+        gsap.to(link, {
+          scale: 1,
+          textShadow: 'none',
+          skewX: 0,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      };
+      
+      link.addEventListener('mouseenter', handleMouseEnter);
+      link.addEventListener('mouseleave', handleMouseLeave);
+      
+      return () => {
+        link.removeEventListener('mouseenter', handleMouseEnter);
+        link.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    });
+  }, []);
+
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:block fixed top-0 left-0 right-0 z-50 panel-neon backdrop-blur-md border-b border-[#00f0ff]/30">
+      <nav ref={navRef} className="hidden lg:block fixed top-0 left-0 right-0 z-50 panel-neon backdrop-blur-md border-b border-[#00f0ff]/30">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center space-x-3">
+            <div ref={logoRef} className="flex items-center space-x-3">
               <div className="relative">
                 <Shield className="w-8 h-8 text-[#00f0ff]" style={{ filter: 'drop-shadow(0 0 5px #00f0ff)' }} />
                 <div className="absolute -inset-1 border border-[#00f0ff]/30 rounded" />
               </div>
-              <span className="font-heading font-bold text-xl text-[#00f0ff] font-mono">
+              <span className="font-mono font-bold text-xl text-[#00f0ff]">
                 SERVER_1676
               </span>
             </div>
             
-            <div className="flex items-center space-x-8">
+            <div ref={navItemsRef} className="flex items-center space-x-8">
               {navItems.map((item) => (
                 <a
                   key={item.href}
@@ -70,7 +164,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between px-4 h-16">
             <div className="flex items-center space-x-2">
               <Shield className="w-7 h-7 text-[#00f0ff]" style={{ filter: 'drop-shadow(0 0 3px #00f0ff)' }} />
-              <span className="font-heading font-bold text-lg text-[#00f0ff] font-mono">SERVER_1676</span>
+              <span className="font-mono font-bold text-lg text-[#00f0ff]">SERVER_1676</span>
             </div>
             
             <button

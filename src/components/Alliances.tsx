@@ -1,11 +1,89 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Trophy, Users, Sword, Star, ArrowRight } from 'lucide-react';
+
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const Alliances = () => {
   const [selectedAlliance, setSelectedAlliance] = useState<string | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    // GSAP entrance animations
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none reverse"
+      }
+    });
+    
+    // Header entrance
+    tl.fromTo(headerRef.current,
+      { opacity: 0, y: 50, rotationX: -45 },
+      {
+        opacity: 1,
+        y: 0,
+        rotationX: 0,
+        duration: 1,
+        ease: "power3.out"
+      }
+    );
+    
+    // Cards stagger entrance
+    tl.fromTo(cardsRef.current?.children || [],
+      { opacity: 0, y: 100, rotationY: -45, scale: 0.8 },
+      {
+        opacity: 1,
+        y: 0,
+        rotationY: 0,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "back.out(1.7)"
+      },
+      "-=0.5"
+    );
+    
+    // Add hover animations to cards
+    const cards = cardsRef.current?.children;
+    if (cards) {
+      Array.from(cards).forEach((card) => {
+        const handleMouseEnter = () => {
+          gsap.to(card, {
+            scale: 1.05,
+            rotationY: 5,
+            z: 50,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        };
+        
+        const handleMouseLeave = () => {
+          gsap.to(card, {
+            scale: 1,
+            rotationY: 0,
+            z: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+        };
+        
+        card.addEventListener('mouseenter', handleMouseEnter);
+        card.addEventListener('mouseleave', handleMouseLeave);
+      });
+    }
+  }, []);
 
   const alliances = [
     {
@@ -81,7 +159,7 @@ const Alliances = () => {
   ];
 
   return (
-    <section id="alliances" className="py-20 bg-gradient-to-br from-[#050d1c] to-[#0f172a] relative overflow-hidden">
+    <section ref={sectionRef} id="alliances" className="py-20 bg-gradient-to-br from-[#050d1c] to-[#0f172a] relative overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -96,6 +174,7 @@ const Alliances = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <motion.div
+          ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -118,7 +197,7 @@ const Alliances = () => {
         </motion.div>
 
         {/* Alliances Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {alliances.map((alliance, index) => (
             <motion.div
               key={alliance.id}
