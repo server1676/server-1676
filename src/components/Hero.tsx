@@ -1,12 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Snowflake, Terminal, Zap } from 'lucide-react';
+import { Shield, Snowflake, Zap } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Loader from './Loader';
 
 const Hero = () => {
   const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
   const [isClient, setIsClient] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [typewriterText, setTypewriterText] = useState('');
   const fullText = 'WHITEOUT SERVER 1676';
   
@@ -31,22 +33,32 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    // Typewriter effect
-    let i = 0;
-    const typeTimer = setInterval(() => {
-      if (i < fullText.length) {
-        setTypewriterText(fullText.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(typeTimer);
-      }
-    }, 150);
+    // Typewriter effect - only start after loading is complete
+    if (!isLoading) {
+      let i = 0;
+      const typeTimer = setInterval(() => {
+        if (i < fullText.length) {
+          setTypewriterText(fullText.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(typeTimer);
+        }
+      }, 150);
 
-    return () => clearInterval(typeTimer);
-  }, []);
+      return () => clearInterval(typeTimer);
+    }
+  }, [isLoading]);
+
+  const handleLoaderComplete = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <Loader onComplete={handleLoaderComplete} />;
+  }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 sm:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 lg:py-16">
       {/* CryoCore Neon Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#050d1c] via-[#0f172a] to-[#050d1c]">
         {/* Grid Pattern Overlay */}
@@ -120,48 +132,20 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-6xl mx-auto py-12 lg:py-20">
+      <div className="relative z-10 text-center max-w-6xl mx-auto py-8 lg:py-12 pb-20 lg:pb-24">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          {/* Terminal Logo with Neon Effects */}
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, type: 'spring' }}
-            className="flex justify-center mb-8"
-          >
-            <div className="relative">
-              <div className="w-20 h-20 lg:w-28 lg:h-28 bg-gradient-to-br from-[#00f0ff] to-[#8efff9] rounded-lg flex items-center justify-center shadow-2xl panel-neon animate-pulse-glow">
-                <Terminal className="w-10 h-10 lg:w-14 lg:h-14 text-[#050d1c]" />
-              </div>
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                className="absolute -inset-3 border-2 border-[#00f0ff]/40 rounded-lg"
-                style={{ boxShadow: '0 0 15px rgba(0, 240, 255, 0.3)' }}
-              />
-              {/* Corner accents */}
-              <div className="absolute -top-1 -left-1 w-3 h-3 border-l-2 border-t-2 border-[#00f0ff]" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 border-r-2 border-t-2 border-[#00f0ff]" />
-              <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l-2 border-b-2 border-[#00f0ff]" />
-              <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r-2 border-b-2 border-[#00f0ff]" />
-            </div>
-          </motion.div>
-
           {/* Typewriter Main Heading */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             className="space-y-4"
           >
-            <div className="text-[#8efff9] text-lg lg:text-xl font-mono mb-2">
-              &gt; SYSTEM_INITIALIZING...
-            </div>
             <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-heading font-bold leading-tight">
               <span className="text-white">Welcome to</span>
               <br />
@@ -176,7 +160,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
             className="space-y-4"
           >
             <p className="text-xl sm:text-2xl lg:text-3xl text-[#00f0ff] font-medium font-mono tracking-wide">
@@ -191,7 +175,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
             className="max-w-4xl mx-auto mb-12 space-y-4"
           >
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
@@ -219,7 +203,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <a
@@ -258,28 +242,34 @@ const Hero = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer group"
+        onClick={() => {
+          const alliancesSection = document.getElementById('alliances');
+          if (alliancesSection) {
+            alliancesSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="relative w-8 h-12 border-2 border-[#00f0ff] rounded-lg flex justify-center panel-neon"
-          style={{ boxShadow: '0 0 10px rgba(0, 240, 255, 0.3)' }}
+          className="relative w-10 h-14 border-2 border-[#00f0ff] rounded-lg flex justify-center panel-neon group-hover:border-[#8efff9] transition-colors duration-300"
+          style={{ boxShadow: '0 0 15px rgba(0, 240, 255, 0.4)' }}
         >
           <motion.div
-            animate={{ y: [0, 16, 0] }}
+            animate={{ y: [0, 18, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-4 bg-[#00f0ff] rounded-full mt-2"
-            style={{ boxShadow: '0 0 5px #00f0ff' }}
+            className="w-1.5 h-5 bg-[#00f0ff] rounded-full mt-2 group-hover:bg-[#8efff9] transition-colors duration-300"
+            style={{ boxShadow: '0 0 8px #00f0ff' }}
           />
           {/* Corner accents */}
-          <div className="absolute -top-1 -left-1 w-2 h-2 border-l border-t border-[#00f0ff]" />
-          <div className="absolute -top-1 -right-1 w-2 h-2 border-r border-t border-[#00f0ff]" />
-          <div className="absolute -bottom-1 -left-1 w-2 h-2 border-l border-b border-[#00f0ff]" />
-          <div className="absolute -bottom-1 -right-1 w-2 h-2 border-r border-b border-[#00f0ff]" />
+          <div className="absolute -top-1 -left-1 w-3 h-3 border-l-2 border-t-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-r-2 border-t-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
+          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l-2 border-b-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r-2 border-b-2 border-[#00f0ff] group-hover:border-[#8efff9] transition-colors duration-300" />
         </motion.div>
-        <div className="text-[#8efff9] text-xs font-mono mt-2 text-center">
+        <div className="text-[#8efff9] text-xs font-mono mt-3 text-center group-hover:text-[#00f0ff] transition-colors duration-300">
           SCROLL_DOWN
         </div>
       </motion.div>
