@@ -45,34 +45,22 @@ const Events = () => {
           </div>
         </motion.div>
 
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="text-[#8efff9] font-mono text-sm mb-4">
-            &gt; VERTICAL_TIMELINE_SYSTEM_ACTIVE
+        <div className="mt-6 flex justify-center space-x-8 text-sm font-mono text-gray-400">
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl">🧸</span>
+            <span>Bear Hunt</span>
           </div>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Interactive timeline view for each alliance&apos;s event schedule. 
-            Events <span className="text-[#00f0ff]">fade in on scroll</span> with 
-            <span className="text-purple-400"> glowing icons</span> and 
-            <span className="text-purple-400">vote-based CJ</span> scheduling.
-          </p>
-          <div className="mt-6 flex justify-center space-x-8 text-sm font-mono text-gray-400">
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl">🧸</span>
-              <span>Bear Hunt</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl">🔥</span>
-              <span>Foundry</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl">🏔️</span>
-              <span>Canyon</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-2xl animate-pulse">🗳️</span>
-              <span className="text-purple-400">CJ (Vote)</span>
-            </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl">🔥</span>
+            <span>Foundry</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl">🏔️</span>
+            <span>Canyon</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl animate-pulse">🗳️</span>
+            <span className="text-purple-400">CJ (Vote)</span>
           </div>
         </div>
 
