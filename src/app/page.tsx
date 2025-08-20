@@ -1,10 +1,10 @@
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
-import ServerBanner from '@/components/ServerBanner';
 import Alliances from '@/components/Alliances';
 import Events from '@/components/Events';
 import SVSPrepTracker from '@/components/SVSPrepTracker';
 import Rules from '@/components/Rules';
+import Join from '@/components/Join';
 import { getSVSPreps } from '@/data';
 
 export default function Home() {
@@ -18,6 +18,7 @@ export default function Home() {
       <Alliances />
       <Events />
       <SVSPrepTracker preps={svsPreps} />
+      <Join />
       <Rules />
     </main>
   );
