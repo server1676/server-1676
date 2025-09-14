@@ -295,7 +295,7 @@ const Hero = () => {
               Strategy, Unity, and Harmony
             </p>
             <div className="text-[#8efff9] text-sm lg:text-base font-mono">
-              &gt; STATUS: OPERATIONAL | NAP5 SYSTEM ACTIVE | SVS VICTORIES: 23+
+              &gt; STATUS: OPERATIONAL | NAP5 SYSTEM ACTIVE | SVS VICTORIES: 6
             </div>
           </motion.div>
 
