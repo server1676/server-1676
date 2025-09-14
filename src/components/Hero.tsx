@@ -321,9 +321,10 @@ const Hero = () => {
                 <div className="text-gray-400 text-sm">NAP5 Alliances</div>
               </div>
               <div className="panel-neon p-4 rounded-lg">
-                <div className="text-[#00f0ff] text-2xl font-bold">2</div>
+                <div className="text-[#00f0ff] text-2xl font-bold">3</div>
                 <div className="text-gray-400 text-sm">Full Alliance Transfers</div>
               </div>
+              
             </div>
           </motion.div>
 

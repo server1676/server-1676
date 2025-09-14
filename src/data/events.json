@@ -18,7 +18,7 @@
       {
         "name": "Canyon",
         "emoji": "🏔️",
-        "times": ["14:00 UTC", "21:00 UTC"],
+        "times": ["14:00 UTC", "19:00 UTC"],
         "color": "#bf00ff"
       },
       {
@@ -61,13 +61,13 @@
     ]
   },
   {
-    "name": "RIS",
+    "name": "ARC",
     "color": "#bf00ff",
     "events": [
       {
         "name": "Bear",
         "emoji": "🧸",
-        "times": ["15:30 UTC", "20:00 UTC"],
+        "times": ["14:00 UTC", "19:00 UTC"],
         "color": "#00f0ff"
       },
       {
@@ -128,7 +128,7 @@
       {
         "name": "Bear",
         "emoji": "🧸",
-        "times": ["13:00 UTC", "19:00 UTC"],
+        "times": ["14:00 UTC", "19:35 UTC"],
         "color": "#00f0ff"
       },
       {

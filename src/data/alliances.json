@@ -36,11 +36,11 @@
     "tagline": "Defense. Unity. Honor."
   },
   {
-    "id": "ris",
-    "name": "RIS",
-    "fullName": "Rise",
+    "id": "arc",
+    "name": "ARC",
+    "fullName": "RiseACEssins",
     "rank": 3,
-    "members": 96,
+    "members": 100,
     "svsScore": "NAP5 Elite",
     "description": "Tactical innovators specializing in coordinated strikes and strategic positioning within NAP5.",
     "achievements": [
