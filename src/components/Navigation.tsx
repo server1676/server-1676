@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { Menu, X, Home, Users, Calendar, Camera, Scroll } from 'lucide-react';
 import State1676Icon from './State1676Icon';
+import { serverConfig } from '@/data';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -143,7 +144,7 @@ const Navigation = () => {
               ))}
               
               <a
-                href="https://discord.gg/pyRZ8fhe"
+                href={serverConfig.discordLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative bg-gradient-to-r from-[#00f0ff] to-[#8efff9] text-[#050d1c] px-6 py-2 rounded-lg font-semibold font-mono transition-all duration-200 transform hover:scale-105 animate-pulse-glow"

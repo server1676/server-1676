@@ -7,6 +7,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
 import Loader from './Loader';
+import { serverConfig } from '@/data';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -337,7 +338,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <a
-              href="https://discord.gg/pyRZ8fhe"
+              href={serverConfig.discordLink}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-4 bg-gradient-to-r from-[#00f0ff] to-[#8efff9] text-[#050d1c] rounded-lg font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3 animate-pulse-glow"
