@@ -24,7 +24,7 @@
       {
         "name": "CJ",
         "emoji": "🗳️",
-        "times": ["Vote Based"],
+        "times": ["15:00 UTC", "20:00 UTC"],
         "color": "#a855f7",
         "isVoteDependent": true
       }
