@@ -21,7 +21,7 @@
     "id": "gow",
     "name": "GOW",
     "fullName": "GodsofWar",
-    "rank": 3,
+    "rank": 5,
     "members": 100,
     "svsScore": "NAP5 Core",
     "description": "Defensive specialists and strategic coordinators maintaining server stability and tactical excellence.",
@@ -54,17 +54,16 @@
     "tagline": "Innovation. Precision. Storm."
   },
   {
-          "id": "3ng",
-      "name": "3NG",
-      "fullName": "ᴿᴼᵞᴬᴸ᭄ғαмιly࿐",
-      "rank": 5,
+          "id": "apx",
+      "name": "APX",
+      "fullName": "ApexPredators",
+      "rank": 4,
       "members": 97,
     "svsScore": "NAP5 Veteran",
-    "description": "Originally from server 1654, 3NG brings veteran experience and strategic depth to NAP5.",
+    "description": "Originally from server 1641, APX brings veteran experience and strategic depth to NAP5.",
     "achievements": [
       "Cross-Server Veterans",
-      "Strategic Experience",
-      "NAP5 Founders"
+      "Strategic Experience"
     ],
     "leader": "Veteran Command",
     "color": "#ff004f",
@@ -75,8 +74,8 @@
     "id": "phw",
     "name": "PHW",
     "fullName": "PhoenixWarrios",
-    "rank": 4,
-    "members": 89,
+    "rank": 3,
+    "members": 100,
     "svsScore": "NAP5 Rising",
     "description": "Rising alliance within NAP5 system, known for adaptability and coordinated event participation.",
     "achievements": [

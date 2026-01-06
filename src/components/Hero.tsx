@@ -296,7 +296,7 @@ const Hero = () => {
               Strategy, Unity, and Harmony
             </p>
             <div className="text-[#8efff9] text-sm lg:text-base font-mono">
-              &gt; STATUS: OPERATIONAL | NAP5 SYSTEM ACTIVE | SVS VICTORIES: 6
+              &gt; STATUS: OPERATIONAL | NAP5 SYSTEM ACTIVE | SVS VICTORIES: 9
             </div>
           </motion.div>
 
@@ -322,7 +322,7 @@ const Hero = () => {
                 <div className="text-gray-400 text-sm">NAP5 Alliances</div>
               </div>
               <div className="panel-neon p-4 rounded-lg">
-                <div className="text-[#00f0ff] text-2xl font-bold">3</div>
+                <div className="text-[#00f0ff] text-2xl font-bold">4</div>
                 <div className="text-gray-400 text-sm">Full Alliance Transfers</div>
               </div>
               
