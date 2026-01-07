@@ -17,7 +17,7 @@ const Navigation = () => {
     { href: '#home', label: 'Home', icon: Home },
     { href: '#alliances', label: 'Alliances', icon: Users },
     { href: '#events', label: 'Events', icon: Calendar },
-    { href: '#svs-prep', label: 'SVS Prep', icon: Camera },
+    { href: '#videos', label: 'Videos', icon: Camera },
     { href: '#rules', label: 'Rules', icon: Scroll },
   ];
 

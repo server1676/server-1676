@@ -5,12 +5,24 @@ import alliancesData from './alliances.json';
 import eventsData from './events.json';
 import configData from './config.json';
 import svsPrepData from './svs-prep-data.json';
+import videosData from './videos.json';
 
 // Type-safe data imports
 export const alliances: Alliance[] = alliancesData as Alliance[];
 export const allianceEvents: AllianceEventData[] = eventsData as AllianceEventData[];
 export const svsPreps: SVSPrepData[] = svsPrepData as SVSPrepData[];
 export const serverConfig = configData;
+
+// Video type
+export interface Video {
+  id: string;
+  title: string;
+  youtubeId: string;
+  channel: string;
+  date?: string;
+}
+
+export const videos: Video[] = videosData as Video[];
 
 // Utility functions for data access
 export const getAlliances = (): Alliance[] => {
@@ -39,6 +51,14 @@ export const getSVSPreps = (): SVSPrepData[] => {
 
 export const getSVSPrepById = (id: string): SVSPrepData | undefined => {
   return svsPreps.find(prep => prep.id === id);
+};
+
+export const getVideos = (): Video[] => {
+  return videos;
+};
+
+export const getVideoById = (id: string): Video | undefined => {
+  return videos.find(video => video.id === id);
 };
 
 // Calculate dynamic stats

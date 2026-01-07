@@ -2,13 +2,13 @@ import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import Alliances from '@/components/Alliances';
 import Events from '@/components/Events';
-import SVSPrepTracker from '@/components/SVSPrepTracker';
+import StateVideos from '@/components/StateVideos';
 import Rules from '@/components/Rules';
 import Join from '@/components/Join';
-import { getSVSPreps } from '@/data';
+import { getVideos } from '@/data';
 
 export default function Home() {
-  const svsPreps = getSVSPreps();
+  const videos = getVideos();
   
   return (
     <main className="min-h-screen">
@@ -17,7 +17,7 @@ export default function Home() {
       {/* <ServerBanner /> */}
       <Alliances />
       <Events />
-      <SVSPrepTracker preps={svsPreps} />
+      <StateVideos videos={videos} />
       <Join />
       <Rules />
     </main>
