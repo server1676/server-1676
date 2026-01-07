@@ -32,6 +32,7 @@ const StateVideos = ({
 }: StateVideosProps) => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [thumbnailErrors, setThumbnailErrors] = useState<Set<string>>(new Set());
+  const [thumbnailLoaded, setThumbnailLoaded] = useState<Set<string>>(new Set());
   const [visibleCount, setVisibleCount] = useState(6);
   
   const sectionRef = useRef<HTMLElement>(null);
@@ -130,6 +131,31 @@ const StateVideos = ({
     }
   };
 
+  // Preload thumbnails for visible videos
+  useEffect(() => {
+    visibleVideos.forEach((video) => {
+      if (!thumbnailLoaded.has(video.youtubeId) && !thumbnailErrors.has(video.youtubeId)) {
+        const img = new Image();
+        img.onload = () => {
+          setThumbnailLoaded(prev => new Set(prev).add(video.youtubeId));
+        };
+        img.onerror = () => {
+          // Try fallback
+          const fallbackImg = new Image();
+          fallbackImg.onload = () => {
+            setThumbnailLoaded(prev => new Set(prev).add(video.youtubeId));
+          };
+          fallbackImg.onerror = () => {
+            setThumbnailErrors(prev => new Set(prev).add(video.youtubeId));
+          };
+          fallbackImg.src = getThumbnailUrl(video.youtubeId, 'mqdefault');
+        };
+        img.src = getThumbnailUrl(video.youtubeId, 'hqdefault');
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleCount]);
+
   return (
     <>
       <section 
@@ -199,36 +225,60 @@ const StateVideos = ({
                         </div>
                       </div>
                     ) : (
-                      <img
-                        key={`${video.youtubeId}-${thumbnailErrors.size}`}
-                        src={getThumbnailUrl(video.youtubeId, 'hqdefault')}
-                        alt={video.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          const fallbackUrl = handleThumbnailError(video.youtubeId, target.src);
-                          
-                          if (fallbackUrl) {
-                            // Try next quality
-                            target.src = fallbackUrl;
-                          } else {
-                            // All thumbnails failed, show placeholder
-                            setThumbnailErrors(prev => new Set(prev).add(video.youtubeId));
-                          }
-                        }}
-                        onLoad={(e) => {
-                          // If hqdefault loads successfully, try to upgrade to maxresdefault for better quality
-                          if (!thumbnailErrors.has(video.youtubeId) && !e.currentTarget.src.includes('maxresdefault')) {
-                            const img = e.currentTarget;
-                            const maxResImg = new Image();
-                            maxResImg.onload = () => {
-                              img.src = getThumbnailUrl(video.youtubeId, 'maxresdefault');
-                            };
-                            maxResImg.src = getThumbnailUrl(video.youtubeId, 'maxresdefault');
-                          }
-                        }}
-                      />
+                      <>
+                        {/* Loading placeholder */}
+                        {!thumbnailLoaded.has(video.youtubeId) && (
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] to-[#050d1c] flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="w-12 h-12 border-4 border-[#00f0ff]/30 border-t-[#00f0ff] rounded-full animate-spin mx-auto mb-2" />
+                              <p className="text-xs text-gray-500 font-mono">Loading...</p>
+                            </div>
+                          </div>
+                        )}
+                        <img
+                          key={`${video.youtubeId}-thumb`}
+                          src={getThumbnailUrl(video.youtubeId, 'hqdefault')}
+                          alt={video.title}
+                          className={`w-full h-full object-cover transition-opacity duration-300 ${
+                            thumbnailLoaded.has(video.youtubeId) ? 'opacity-100' : 'opacity-0'
+                          }`}
+                          loading={index < 6 ? "eager" : "lazy"}
+                          decoding="async"
+                          onError={(e) => {
+                            const target = e.currentTarget;
+                            const fallbackUrl = handleThumbnailError(video.youtubeId, target.src);
+                            
+                            if (fallbackUrl) {
+                              // Try next quality
+                              target.src = fallbackUrl;
+                            } else {
+                              // All thumbnails failed, show placeholder
+                              setThumbnailErrors(prev => new Set(prev).add(video.youtubeId));
+                              setThumbnailLoaded(prev => {
+                                const newSet = new Set(prev);
+                                newSet.delete(video.youtubeId);
+                                return newSet;
+                              });
+                            }
+                          }}
+                          onLoad={(e) => {
+                            setThumbnailLoaded(prev => new Set(prev).add(video.youtubeId));
+                            
+                            // If hqdefault loads successfully, try to upgrade to maxresdefault for better quality
+                            if (!thumbnailErrors.has(video.youtubeId) && !e.currentTarget.src.includes('maxresdefault')) {
+                              const img = e.currentTarget;
+                              const maxResImg = new Image();
+                              maxResImg.onload = () => {
+                                img.src = getThumbnailUrl(video.youtubeId, 'maxresdefault');
+                              };
+                              maxResImg.onerror = () => {
+                                // maxresdefault not available, keep hqdefault
+                              };
+                              maxResImg.src = getThumbnailUrl(video.youtubeId, 'maxresdefault');
+                            }
+                          }}
+                        />
+                      </>
                     )}
                     
                     {/* Overlay with Play Button */}
