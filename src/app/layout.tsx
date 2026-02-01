@@ -26,8 +26,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "State 1676 - Strategy, Unity, and Harmony | Whiteout Survival",
-  description: "Join State 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events. Home to NAP5 alliances: TH3, GOW, STG, LAG, and AMF.",
-  keywords: "Whiteout Survival, State 1676, NAP5, Alliance, Strategy Game, Gaming Community, TH3, GOW, STG, LAG, AMF",
+  description: "Join State 1676 in Whiteout Survival - Experience strategic gameplay, strong alliances, and coordinated events. Home to NAP5 alliances: TH3, STA, ARC, APX, and PHW.",
+  keywords: "Whiteout Survival, State 1676, NAP5, Alliance, Strategy Game, Gaming Community, TH3, STA, ARC, APX, PHW",
   authors: [{ name: "State 1676 Community" }],
   openGraph: {
     title: "State 1676 - Strategy, Unity, and Harmony",
