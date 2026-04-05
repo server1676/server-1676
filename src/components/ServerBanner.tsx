@@ -14,6 +14,7 @@ import {
   Crown,
   Swords
 } from 'lucide-react';
+import { serverConfig } from '@/data';
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -298,7 +299,7 @@ const ServerBanner = () => {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <motion.a
-                href="https://discord.gg/pyRZ8fhe"
+                href={serverConfig.discordLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative px-10 py-4 bg-gradient-to-r from-[#fbbf24] to-[#ff8c00] text-[#050d1c] rounded-lg font-bold text-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3 animate-pulse-glow"

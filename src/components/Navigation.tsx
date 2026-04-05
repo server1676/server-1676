@@ -224,7 +224,7 @@ const Navigation = () => {
             ))}
             
             <motion.a
-              href="https://discord.gg/server1676"
+              href={serverConfig.discordLink}
               target="_blank"
               rel="noopener noreferrer"
               initial={{ x: 50, opacity: 0 }}

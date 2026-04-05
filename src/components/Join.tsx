@@ -1,5 +1,7 @@
 'use client';
 
+import { serverConfig } from '@/data';
+
 const Join = () => {
   return (
     <section id="recruitment" className="py-20 bg-gradient-to-br from-[#101820] to-[#1e293b]">
@@ -12,7 +14,7 @@ const Join = () => {
         </p>
         <div className="mt-8 flex justify-center">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScpvuUia03g-mCLmPJwY_BPhK6pD5ofpRdQk6sEmfQMhLSj-Q/viewform?usp=header"
+            href={serverConfig.recruitmentFormUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative px-8 py-4 bg-gradient-to-r from-[#00f0ff] to-[#8efff9] text-[#050d1c] rounded-lg font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center"
