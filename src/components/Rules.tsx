@@ -21,7 +21,6 @@ const Rules = () => {
         'Alliances that only participate to achieve essential reward scores will be automatically excluded from NAP',
         'Agreements between alliances within the NAP must be communicated to all members for transparency',
         'Regular meetings will be held to discuss strategies and resolve conflicts',
-        'NAP Leader serves maximum 4 weeks, cannot repeat leadership for more than 8 weeks total'
       ]
     },
     {
@@ -37,7 +36,7 @@ const Rules = () => {
         'Must notify NAP and demonstrate communication attempt via Discord screenshot',
         'Academy/farm protection limited to only 1 per alliance',
         'Academy name must reference the main alliance',
-        'Attacks on facilities during events are not allowed (BT, CJ, Canyon, Foundry)'
+        'Attacks on facilities are not allowed'
       ]
     },
     {
@@ -47,13 +46,9 @@ const Rules = () => {
       color: '#bf00ff',
       summary: 'Specific rules governing attacks on cities and territories.',
       details: [
-        'During BIA: Attacks on non-NAP cities (Top 6-10 ranked) allowed up to maximum 2 attacks',
-        'No limits on attacks on cities outside top 10 ranking during BIA',
-        'No limits on cities without an alliance during BIA',
-        'Outside BIA: Attack cities outside NAP5 maximum 1 time per day',
-        'Maximum 3 cities of the same alliance per day outside BIA',
-        'Cities without alliance can be attacked unlimitedly',
-        'NOTE: An attack is defined as any individual attack - rallies are not allowed'
+        'Tile attacks are allowed.',
+        'No city attacks against players from any alliance.',
+        'City attacks are still allowed on players without an alliance.'
       ]
     },
     {
